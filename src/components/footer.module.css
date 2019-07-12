@@ -1,0 +1,36 @@
+.fade {
+  align-self: flex-end;
+  position: relative;
+  height: 200px;
+  width: 100%;
+}
+
+.fade::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0);
+  background-image:
+    linear-gradient(to bottom,
+      #fff,
+      rgba(255, 255, 255, 0));
+}
+
+.gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #B3575B;
+  background-image:
+    linear-gradient(to right,
+      #B3575B,
+      #C3A92D,
+      #95A650,
+      #5B9888,
+      #0E8B9B);
+}
