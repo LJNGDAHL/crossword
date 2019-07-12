@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "crossword",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "A simple crossword puzzle, built with Gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Katarina Ljungdahl <katarina@folkungagatan54.se>",
   "dependencies": {
     "gatsby": "^2.13.13",
     "gatsby-image": "^2.2.4",
