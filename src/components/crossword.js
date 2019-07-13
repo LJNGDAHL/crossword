@@ -4,6 +4,7 @@ import styles from "./crossword.module.css"
 
 class Crossword extends Component {
   componentDidMount() {
+    // Center first cell on mount
     if (this._grid && this._cell) {
       let parent = this._cell
       let offset = 0
@@ -12,8 +13,6 @@ class Crossword extends Component {
         offset += parent.offsetLeft
         parent = parent.parentElement
       }
-
-      this._grid.scrollIntoView({ block: "center" })
 
       this._grid.scrollTo(offset / 2 - this._cell.offsetWidth, 0)
     }
