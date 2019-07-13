@@ -26,11 +26,9 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <main>{children}</main>
-      </div>
+    <div className={styles.content}>
+      <Header siteTitle={data.site.siteMetadata.title} />
+      <main>{children}</main>
     </div>
   )
 }
