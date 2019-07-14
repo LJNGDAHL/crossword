@@ -3,6 +3,17 @@ import data from "./../data"
 import styles from "./crossword.module.css"
 
 class Crossword extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      pressed: null,
+    }
+
+    this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.handleKeyUp = this.handleKeyUp.bind(this)
+  }
+
   componentDidMount() {
     // Center first cell on mount
     if (this._grid && this._cell) {
@@ -15,6 +26,47 @@ class Crossword extends Component {
       }
 
       this._grid.scrollTo(offset / 2 - this._cell.offsetWidth, 0)
+    }
+  }
+
+  handleKeyDown(event) {
+    /* Stored pressed key to avoid buggy behaviour
+     * whenever user hits multiple keys at the same time
+     */
+    this.setState({ pressed: event.key })
+
+    // Prevent 'space' character
+    if (event.key === " ") {
+      event.preventDefault()
+    }
+  }
+
+  handleKeyUp(event) {
+    // Exit early if previous key is not yet handled
+    if (event.key !== this.state.pressed) {
+      return
+    }
+
+    // Focus on previous input element (if row has any previous one)
+    if (event.key === "Backspace" && event.target.value.length === 0) {
+      if (!event.target.id.endsWith("0")) {
+        const previous = this.getSibling(event.target.id, "backward")
+        this[previous].focus()
+      }
+    } else {
+      if (event.key.length === 1) {
+        const next = this.getSibling(event.target.id, "forward")
+        if (this[next]) this[next].focus()
+      }
+    }
+  }
+
+  getSibling(id, direction) {
+    const lastChar = parseInt(id[id.length - 1], 10)
+    if (direction === "forward") {
+      return id.replace(/.$/, `${lastChar + 1}`)
+    } else if (direction === "backward") {
+      return id.replace(/.$/, `${lastChar - 1}`)
     }
   }
 
@@ -95,16 +147,20 @@ class Crossword extends Component {
                       <label className={styles.label}>{rowIndex + 1}</label>
                     ) : null}
                     <input
-                      id={`item-${cell[0]}-${cell[1]}`}
+                      ref={el => (this[`input_${cell[0]}_${cell[1]}`] = el)}
+                      onChange={this.handleChange}
+                      id={`input_${cell[0]}_${cell[1]}`}
                       className={`${styles.input} ${
                         vertical ? styles.vertical : null
                       }`}
                       type="text"
+                      onKeyDown={this.handleKeyDown}
+                      onKeyUp={this.handleKeyUp}
                       minLength="1"
                       required={vertical}
                       maxLength="1"
                       autoComplete="off"
-                      pattern="^[aA-öÖ]{1}$"
+                      pattern="^[a-öA-Ö]{1}$"
                     ></input>
                   </div>
                 )
