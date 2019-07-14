@@ -12,11 +12,12 @@ class Crossword extends Component {
 
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.handleKeyUp = this.handleKeyUp.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
     // Center first cell on mount
-    if (this._grid && this._cell) {
+    if (this._form && this._cell) {
       let parent = this._cell
       let offset = 0
 
@@ -25,8 +26,14 @@ class Crossword extends Component {
         parent = parent.parentElement
       }
 
-      this._grid.scrollTo(offset / 2 - this._cell.offsetWidth, 0)
+      this._form.scrollTo(offset / 2 - this._cell.offsetWidth, 0)
     }
+  }
+
+  // Check if user has filled in all the required fields
+  handleChange() {
+    const valid = this._form.checkValidity()
+    this.props.onChange(valid)
   }
 
   handleKeyDown(event) {
@@ -116,7 +123,7 @@ class Crossword extends Component {
     let currentRow
 
     return (
-      <div className={styles.grid} ref={el => (this._grid = el)}>
+      <form className={styles.grid} ref={el => (this._form = el)}>
         {grid.map((row, rowIndex) => {
           return (
             <div className={styles.row} key={`row-${rowIndex}`}>
@@ -168,7 +175,7 @@ class Crossword extends Component {
             </div>
           )
         })}
-      </div>
+      </form>
     )
   }
 }
