@@ -1,20 +1,13 @@
 .grid {
   overflow: scroll;
   scroll-padding: 2rem;
+  margin-bottom: 5rem;
 }
 
 .row {
   display: flex;
   padding-left: 1rem;
-}
-
-.row::after {
-  content: "";
-  display: block;
-  position: absolute;
-  right: -1rem;
-  width: 1rem;
-  height: 1px;
+  padding-right: 1rem;
 }
 
 .cell {
@@ -43,22 +36,17 @@
   height: 2rem;
 }
 
-
-
 .input {
   display: inline-block;
   border: none;
-  /* border: 1px solid #000; */
   width: 2rem;
   height: 2rem;
-  justify-content: center;
   text-align: center;
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-size: 1.5rem;
   text-transform: uppercase;
 }
-
 
 @media screen and (min-width: 600px) {
   .label {
@@ -81,13 +69,6 @@
     display: flex;
     width: 3rem;
     height: 3rem;
-    justify-content: center;
-    /* border: 1px solid black; */
-    text-align: center;
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
-    text-transform: uppercase;
   }
 }
 
@@ -95,8 +76,4 @@
   .row {
     justify-content: center;
   }
-}
-
-.input:focus {
-  outline: 3px solid #000;
 }
