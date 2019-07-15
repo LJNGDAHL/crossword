@@ -1,0 +1,45 @@
+.container {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-top: 1.4rem;
+}
+
+.label {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #757575;
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  transform-origin: 0 0;
+  transform: translateY(24px);
+  display: block;
+  transition: transform 230ms ease;
+  pointer-events: none;
+  cursor: text;
+}
+
+.input:focus+.label,
+.input:valid+.label {
+  color: #000;
+  font-weight: 700;
+  cursor: default;
+  top: 5px;
+  left: 7px;
+  transform-origin: 0 0;
+  transform: translateY(0px) scale(0.7);
+}
+
+.input {
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid #000;
+  border-radius: 0;
+  padding: 0.4rem;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-bottom: 1px solid #4db9d1;
+}

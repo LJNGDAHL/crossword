@@ -1,0 +1,23 @@
+.button {
+  border-radius: 0;
+  width: 100%;
+  font-weight: 400;
+  border: 1px solid #000;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #000;
+  color: #fff;
+}
+
+.button:disabled {
+  background-color: #efefef;
+  color: #adadad;
+}
+
+.button:active,
+.button:focus {
+  outline: 3px solid #4db9d1;
+}
