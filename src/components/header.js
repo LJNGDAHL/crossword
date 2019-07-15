@@ -7,7 +7,6 @@ import Logo from "./logo"
 const Header = ({ siteTitle }) => (
   <header className={styles.header}>
     <Logo />
-    <h1 className={styles.title}>Schlagerord-flätan</h1>
   </header>
 )
 
