@@ -1,11 +1,11 @@
 [
-  ["empty", "empty", "C*1", "empty", "empty", "empty", "empty"],
-  ["empty", "empty", "R", "empty", "empty", "empty", "empty"],
-  ["empty", "_C*2", "_O", "_R", "_N", "_Y", "empty"],
-  ["empty", "empty", "S", "empty", "empty", "empty", "empty"],
-  ["empty", "empty", "S", "empty", "empty", "empty", "empty"],
-  ["empty", "empty", "W", "empty", "empty", "empty", "empty"],
-  ["empty", "empty", "O", "empty", "empty", "empty", "empty"],
-  ["empty", "empty", "R", "empty", "empty", "empty", "empty"],
-  ["empty", "empty", "D", "empty", "empty", "empty", "empty"]
+  ["empty", "empty", "_C*1", "empty", "empty", "empty", "empty"],
+  ["empty", "empty", "_R", "empty", "empty", "empty", "empty"],
+  ["empty", "C*2", "_O", "R", "N", "Y", "empty"],
+  ["empty", "empty", "_S", "empty", "empty", "empty", "empty"],
+  ["empty", "empty", "_S", "empty", "empty", "empty", "empty"],
+  ["empty", "empty", "_W", "empty", "empty", "empty", "empty"],
+  ["empty", "empty", "_O", "empty", "empty", "empty", "empty"],
+  ["empty", "empty", "_R", "empty", "empty", "empty", "empty"],
+  ["empty", "empty", "_D", "empty", "empty", "empty", "empty"]
 ]
