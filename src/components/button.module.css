@@ -13,8 +13,8 @@
 }
 
 .button:disabled {
-  background-color: #efefef;
   color: #adadad;
+  border: 1px solid #adadad;
 }
 
 .button:active,

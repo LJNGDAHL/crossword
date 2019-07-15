@@ -20,7 +20,8 @@
 }
 
 .input:focus+.label,
-.input:valid+.label {
+.input:valid+.label,
+.input:disabled+.label {
   color: #000;
   font-weight: 700;
   cursor: default;
@@ -29,6 +30,7 @@
   transform-origin: 0 0;
   transform: translateY(0px) scale(0.7);
 }
+
 
 .input {
   border: none;
@@ -42,4 +44,18 @@
 .input:focus {
   outline: none;
   border-bottom: 1px solid #4db9d1;
+}
+
+.submitted:focus+.label,
+.submitted:valid+.label,
+.submitted:disabled+.label,
+.submitted.input,
+.submitted.input:-webkit-autofill {
+  color: #adadad;
+  -webkit-text-fill-color: #adadad;
+}
+
+.submitted.input {
+  border-bottom: 1px solid #adadad;
+
 }
