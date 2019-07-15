@@ -29,8 +29,8 @@ class Main extends Component {
   }
 
   handleChange(valid, { id, value }) {
+    const clone = this.state.solution.slice()
     if (id.includes("_")) {
-      const clone = this.state.solution.slice()
       const current = id.split("-").pop()
       const index = clone.findIndex(el => el.index === current)
 
@@ -43,12 +43,12 @@ class Main extends Component {
           clone[index].value = value
         }
       }
+    }
 
-      if (valid) {
-        this.setState({ filled: valid, solution: clone })
-      } else {
-        this.setState({ solution: clone })
-      }
+    if (valid) {
+      this.setState({ solution: clone, filled: valid })
+    } else {
+      this.setState({ solution: clone })
     }
   }
 
@@ -79,7 +79,7 @@ class Main extends Component {
       <Layout>
         <SEO title="Schlagerord-flätan" />
         <Crossword onChange={this.handleChange} />
-        {!this.state.filled ? (
+        {this.state.filled ? (
           <div ref={el => (this._form = el)}>
             <SubmitForm
               submitted={this.state.submitted}
