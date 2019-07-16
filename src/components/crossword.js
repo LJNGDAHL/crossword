@@ -43,13 +43,13 @@ class Crossword extends Component {
                       ref={el => (this[`${cell}-${rowIndex}`] = el)}
                       onChange={this.handleChange}
                       id={`${cell}-${rowIndex}`}
+                      name={`${cell}-${rowIndex}`}
                       className={styles.input}
                       type="text"
                       minLength="1"
                       required
                       maxLength="1"
                       autoComplete="off"
-                      pattern="^[a-öA-Ö]{1}$"
                     ></input>
                   </div>
                 )
