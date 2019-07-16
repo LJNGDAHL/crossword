@@ -1,9 +1,12 @@
 import React, { Component } from "react"
+import smoothscroll from "smoothscroll-polyfill"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Crossword from "../components/crossword"
 import SubmitForm from "../components/form"
+
+smoothscroll.polyfill()
 
 class Main extends Component {
   constructor() {
