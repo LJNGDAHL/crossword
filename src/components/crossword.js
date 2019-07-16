@@ -22,7 +22,12 @@ class Crossword extends Component {
 
   // Check validity on mount, since it can be prepopulated from local storage
   componentDidMount() {
-    if (window.localStorage) this.setState({ resource: window.localStorage })
+    const valid = this._form.checkValidity()
+    if (valid) this.props.onValid()
+
+    if (window.localStorage) {
+      this.setState({ resource: { ...window.localStorage } })
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -40,6 +45,15 @@ class Crossword extends Component {
     if (valid) this.props.onValid()
 
     const { value, id, name } = event.target
+    const clone = { ...this.state.resource }
+
+    if (value === "") {
+      delete clone[name]
+    } else {
+      clone[name] = value
+    }
+
+    this.setState({ resource: clone })
     this.props.onChange(id, value, name)
   }
 
@@ -81,7 +95,7 @@ class Crossword extends Component {
                       type="text"
                       minLength="1"
                       required
-                      defaultValue={this.state.resource[name]}
+                      value={this.state.resource[name] || ""}
                       maxLength="1"
                       autoComplete="off"
                     ></input>
