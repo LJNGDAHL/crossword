@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import data from "./../data.example.json"
+import data from "./../data"
 import styles from "./crossword.module.css"
 
 class Crossword extends Component {
