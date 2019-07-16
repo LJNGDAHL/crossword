@@ -112,7 +112,10 @@ class Main extends Component {
     return (
       <div ref={el => (this._container = el)}>
         <Layout>
-          <Head title="Schlagerord-flätan" />
+          <Head
+            title="Schlagerord-flätan"
+            description="Schlagerkväll i Pride Park fredagen den 19 juli 2019 under Malmö Pride! Lös schlagerord-flätan, sjung med eller bara njut."
+          />
           <Crossword onChange={this.handleChange} onValid={this.onValid} />
         </Layout>
         {this.state.valid ? (
