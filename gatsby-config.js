@@ -22,7 +22,7 @@ module.exports = {
         short_name: `crossword`,
         start_url: `/`,
         display: `minimal-ui`,
-        icon: `src/images/logo-small.png`,
+        icon: `src/images/favicon.png`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
