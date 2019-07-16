@@ -8,6 +8,14 @@ class Crossword extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  // Ignore spaces since this is not a valid value
+  handleKeyDown(event) {
+    if (event.key === " ") {
+      event.preventDefault()
+    }
+  }
+  }
+
   // Check if user has filled in all the required fields
   handleChange(event) {
     const valid = this._form.checkValidity()
