@@ -1,5 +1,7 @@
 .grid {
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
   scroll-padding: 2rem;
   margin-bottom: 5rem;
 }
@@ -32,19 +34,21 @@
 .placeholder {
   content: "";
   display: inline-block;
-  width: 2rem;
-  height: 2rem;
+  width: 1.9rem;
+  height: 1.9rem;
 }
 
 .input {
   display: inline-block;
+  border-radius: 0;
   border: none;
-  width: 2rem;
-  height: 2rem;
+  width: 1.9rem;
+  height: 1.9rem;
   text-align: center;
-  font-family: "Lato", sans-serif;
+  padding: 0;
+  /* font-family: "Lato", sans-serif; */
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-transform: uppercase;
 }
 
