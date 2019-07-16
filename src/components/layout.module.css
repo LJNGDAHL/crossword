@@ -1,7 +1,7 @@
 .content {
   background: linear-gradient(#4db9d1, #76f7b3);
   margin: 0 auto;
-  padding: 1rem 0 0;
+  padding: 1.2rem 0 1.5rem;
   height: 100%;
   min-height: 100vh;
 }

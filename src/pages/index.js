@@ -114,17 +114,17 @@ class Main extends Component {
         <Layout>
           <Head title="Schlagerord-flätan" />
           <Crossword onChange={this.handleChange} onValid={this.onValid} />
-          {this.state.valid ? (
-            <div ref={el => (this._form = el)}>
-              <SubmitForm
-                submitted={this.state.submitted}
-                loading={this.state.loading}
-                onInput={this.handleInput}
-                handleSubmit={event => this.handleSubmit(event)}
-              />
-            </div>
-          ) : null}
         </Layout>
+        {this.state.valid ? (
+          <div ref={el => (this._form = el)}>
+            <SubmitForm
+              submitted={this.state.submitted}
+              loading={this.state.loading}
+              onInput={this.handleInput}
+              handleSubmit={event => this.handleSubmit(event)}
+            />
+          </div>
+        ) : null}
       </div>
     )
   }
