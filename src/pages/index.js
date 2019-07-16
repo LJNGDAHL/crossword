@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import smoothscroll from "smoothscroll-polyfill"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Head from "../components/head"
 import Crossword from "../components/crossword"
 import SubmitForm from "../components/form"
 
@@ -112,7 +112,7 @@ class Main extends Component {
     return (
       <div ref={el => (this._container = el)}>
         <Layout>
-          <SEO title="Schlagerord-flätan" />
+          <Head title="Schlagerord-flätan" />
           <Crossword onChange={this.handleChange} onValid={this.onValid} />
           {this.state.valid ? (
             <div ref={el => (this._form = el)}>
