@@ -45,6 +45,13 @@ class Main extends Component {
           this._form.scrollIntoView({ block: "start", behavior: "smooth" })
       }, 190)
     }
+
+    if (!prevState.submitted && this.state.submitted) {
+      window.setTimeout(() => {
+        if (this._container)
+          this._container.scrollIntoView({ block: "start", behavior: "smooth" })
+      }, 2500)
+    }
   }
 
   onValid() {
@@ -100,20 +107,22 @@ class Main extends Component {
 
   render() {
     return (
-      <Layout>
-        <SEO title="Schlagerord-flätan" />
-        <Crossword onChange={this.handleChange} onValid={this.onValid} />
-        {this.state.valid ? (
-          <div ref={el => (this._form = el)}>
-            <SubmitForm
-              submitted={this.state.submitted}
-              loading={this.state.loading}
-              onInput={this.handleInput}
-              handleSubmit={event => this.handleSubmit(event)}
-            />
-          </div>
-        ) : null}
-      </Layout>
+      <div ref={el => (this._container = el)}>
+        <Layout>
+          <SEO title="Schlagerord-flätan" />
+          <Crossword onChange={this.handleChange} onValid={this.onValid} />
+          {this.state.valid ? (
+            <div ref={el => (this._form = el)}>
+              <SubmitForm
+                submitted={this.state.submitted}
+                loading={this.state.loading}
+                onInput={this.handleInput}
+                handleSubmit={event => this.handleSubmit(event)}
+              />
+            </div>
+          ) : null}
+        </Layout>
+      </div>
     )
   }
 }
