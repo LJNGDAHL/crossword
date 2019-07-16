@@ -1,0 +1,13 @@
+.container {
+  margin: 0 auto;
+}
+
+.title,
+.text {
+  color: #fff;
+  text-align: center;
+}
+
+.title {
+  font-weight: 700;
+}
