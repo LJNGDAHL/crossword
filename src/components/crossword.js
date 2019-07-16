@@ -1,12 +1,12 @@
 import React, { Component } from "react"
-import data from "./../data"
+import data from "./../data.example.json"
 import styles from "./crossword.module.css"
 
 class Crossword extends Component {
   constructor() {
     super()
     this.state = {
-      resource: window.localStorage || {},
+      resource: {},
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -22,9 +22,15 @@ class Crossword extends Component {
 
   // Check validity on mount, since it can be prepopulated from local storage
   componentDidMount() {
-    if (this._form) {
-      const valid = this._form.checkValidity()
-      if (valid) this.props.onValid()
+    if (window.localStorage) this.setState({ resource: window.localStorage })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.resource !== this.state.resource) {
+      if (this._form) {
+        const valid = this._form.checkValidity()
+        if (valid) this.props.onValid()
+      }
     }
   }
 

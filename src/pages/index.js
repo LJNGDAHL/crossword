@@ -6,8 +6,6 @@ import SEO from "../components/seo"
 import Crossword from "../components/crossword"
 import SubmitForm from "../components/form"
 
-smoothscroll.polyfill()
-
 class Main extends Component {
   constructor() {
     super()
@@ -26,6 +24,7 @@ class Main extends Component {
    * if they are part of the solution
    */
   componentDidMount() {
+    smoothscroll.polyfill()
     const solution = []
 
     for (let key in window.localStorage) {
@@ -60,7 +59,11 @@ class Main extends Component {
 
   handleChange(id, value, name) {
     // Store everything in local storage
-    window.localStorage.setItem(name, value)
+    if (value === "") {
+      window.localStorage.removeItem(name)
+    } else {
+      window.localStorage.setItem(name, value)
+    }
 
     if (id.includes("main")) {
       const clone = this.state.solution.slice()
