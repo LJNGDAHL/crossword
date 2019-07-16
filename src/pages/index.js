@@ -13,27 +13,50 @@ class Main extends Component {
     super()
 
     this.state = {
-      filled: false,
+      valid: false,
       submitted: false,
       solution: [],
     }
 
     this.handleChange = this.handleChange.bind(this)
+    this.onValid = this.onValid.bind(this)
+  }
+
+  /* Loop through all stored items and store them in state
+   * if they are part of the solution
+   */
+  componentDidMount() {
+    const solution = []
+
+    for (let key in window.localStorage) {
+      if (key.includes("main")) {
+        const index = key.split("-").pop()
+        solution.push({ index, value: window.localStorage[key] })
+      }
+    }
+
+    this.setState({ solution })
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (!prevState.filled && this.state.filled) {
+    if (!prevState.valid && this.state.valid) {
       window.setTimeout(() => {
-        if (this._form) {
+        if (this._form)
           this._form.scrollIntoView({ block: "start", behavior: "smooth" })
-        }
       }, 190)
     }
   }
 
-  handleChange(valid, { id, value }) {
-    const clone = this.state.solution.slice()
-    if (id.includes("_")) {
+  onValid() {
+    this.setState({ valid: true })
+  }
+
+  handleChange(id, value, name) {
+    // Store everything in local storage
+    window.localStorage.setItem(name, value)
+
+    if (id.includes("main")) {
+      const clone = this.state.solution.slice()
       const current = id.split("-").pop()
       const index = clone.findIndex(el => el.index === current)
 
@@ -46,11 +69,6 @@ class Main extends Component {
           clone[index].value = value
         }
       }
-    }
-
-    if (valid) {
-      this.setState({ solution: clone, filled: valid })
-    } else {
       this.setState({ solution: clone })
     }
   }
@@ -74,15 +92,18 @@ class Main extends Component {
       method: "POST",
       mode: "no-cors",
       body: data,
-    }).then(() => this.setState({ submitted: true, loading: false }))
+    }).then(() => {
+      this.setState({ submitted: true, loading: false })
+      window.localStorage.clear()
+    })
   }
 
   render() {
     return (
       <Layout>
         <SEO title="Schlagerord-flätan" />
-        <Crossword onChange={this.handleChange} />
-        {this.state.filled ? (
+        <Crossword onChange={this.handleChange} onValid={this.onValid} />
+        {this.state.valid ? (
           <div ref={el => (this._form = el)}>
             <SubmitForm
               submitted={this.state.submitted}
