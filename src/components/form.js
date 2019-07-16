@@ -7,7 +7,7 @@ import Button from "./button"
 const SubmitForm = ({ handleSubmit, loading, submitted }) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <div className={styles.content}>
+      <div className={`${styles.content} ${submitted && styles.hidden}`}>
         <h2 className={styles.title}>Skicka in ditt svar</h2>
         <Input
           submitted={submitted}
@@ -34,12 +34,12 @@ const SubmitForm = ({ handleSubmit, loading, submitted }) => {
           loading={loading}
           disabled={submitted}
         />
-        {submitted ? (
-          <div className={styles.message}>
-            <p>Ditt svar är inskickat. Tack!</p>
-          </div>
-        ) : null}
       </div>
+      {submitted ? (
+        <div className={styles.message}>
+          <p className={styles.text}>Ditt svar är inskickat. Tack!</p>
+        </div>
+      ) : null}
     </form>
   )
 }
