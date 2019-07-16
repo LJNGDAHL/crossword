@@ -5,7 +5,12 @@ import styles from "./crossword.module.css"
 class Crossword extends Component {
   constructor() {
     super()
+    this.state = {
+      resource: window.localStorage || {},
+    }
+
     this.handleChange = this.handleChange.bind(this)
+    this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
   // Ignore spaces since this is not a valid value
@@ -14,13 +19,22 @@ class Crossword extends Component {
       event.preventDefault()
     }
   }
+
+  // Check validity on mount, since it can be prepopulated from local storage
+  componentDidMount() {
+    if (this._form) {
+      const valid = this._form.checkValidity()
+      if (valid) this.props.onValid()
+    }
   }
 
   // Check if user has filled in all the required fields
   handleChange(event) {
     const valid = this._form.checkValidity()
-    const { value, id } = event.target
-    this.props.onChange(valid, { id, value })
+    if (valid) this.props.onValid()
+
+    const { value, id, name } = event.target
+    this.props.onChange(id, value, name)
   }
 
   render() {
@@ -42,20 +56,26 @@ class Crossword extends Component {
                 let label = cell.includes("*")
                 if (label) label = cell.split("*").pop()
 
+                const placement = `${cellIndex}-${rowIndex}`
+                const name = cell.includes("_")
+                  ? `mainInput_${placement}`
+                  : `input_${placement}`
+
                 return (
                   <div key={`cell-${cellIndex}`} className={styles.cell}>
                     {label ? (
                       <label className={styles.label}>{label}</label>
                     ) : null}
                     <input
-                      ref={el => (this[`${cell}-${rowIndex}`] = el)}
+                      onKeyDown={this.handleKeyDown}
                       onChange={this.handleChange}
-                      id={`${cell}-${rowIndex}`}
-                      name={`${cell}-${rowIndex}`}
+                      id={name}
+                      name={name}
                       className={styles.input}
                       type="text"
                       minLength="1"
                       required
+                      defaultValue={this.state.resource[name]}
                       maxLength="1"
                       autoComplete="off"
                     ></input>
