@@ -29,9 +29,3 @@ gatsby build
 ```
 
 The static files are found in the public directory.
-
-## Todo
-
-- [ ] Open submit form once required fields are filled
-- [ ] Post form data to i.e. Google Sheets
-- [ ] Add CSS variables used for marking main, vertical row
