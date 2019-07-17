@@ -39,13 +39,22 @@ class Crossword extends Component {
     }
   }
 
-  // Check if user has filled in all the required fields
   handleChange(event) {
+    /* Since some android browsers ignores if event has been prevented by
+     * `handleKeyDown`, exit early as an extra safety measure. Also, remove any
+     * extra characters since some browsers handles maxlength in a weird way
+     * (more information: https://caniuse.com/#search=maxlength)
+     */
+    let { value } = event.target
+    if (value === " ") return
+    if (value.length > 1) value = value.charAt(0)
+
+    // Check if user has filled in all the required fields
     const valid = this._form.checkValidity()
     if (valid) this.props.onValid()
 
-    const { value, id, name } = event.target
     const clone = { ...this.state.resource }
+    const { id, name } = event.target
 
     if (value === "") {
       delete clone[name]
