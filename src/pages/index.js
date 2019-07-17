@@ -102,10 +102,14 @@ class Main extends Component {
       method: "POST",
       mode: "no-cors",
       body: data,
-    }).then(() => {
-      this.setState({ submitted: true, loading: false })
-      window.localStorage.clear()
     })
+      .then(() => {
+        this.setState({ submitted: true, loading: false })
+        window.localStorage.clear()
+      })
+      .catch(err => {
+        this.setState({ submitted: false, loading: false })
+      })
   }
 
   render() {
