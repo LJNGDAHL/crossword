@@ -12,7 +12,7 @@
 .form {
   background-color: #fff;
   margin: 0 auto;
-  padding: 2rem 1rem 4rem;
+  padding: 2rem 1rem 1.8rem;
   transition: all 0.3s ease-in-out;
   opacity: 0;
   animation: form-appear 190ms ease-in forwards 300ms;
@@ -33,6 +33,11 @@
 .content.hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+.details {
+  margin-top: 2.6rem;
+  line-height: 1.8;
 }
 
 .message {

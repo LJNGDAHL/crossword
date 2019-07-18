@@ -34,6 +34,12 @@ const SubmitForm = ({ handleSubmit, loading, submitted }) => {
           loading={loading}
           disabled={submitted}
         />
+        <p className={styles.details}>
+          Ditt inskickade svar används enbart för att rätta tävlingen och
+          kontaktuppgifterna används enbart för att vi ska kunna kontakta
+          vinnaren som utses. Uppgifterna hanteras av Malmö Pride och raderas
+          permanent efter 30 dagar. Informationen delas inte till extern part.
+        </p>
       </div>
       {submitted ? (
         <div className={styles.message}>
